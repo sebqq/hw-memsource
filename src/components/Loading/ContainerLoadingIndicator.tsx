@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 1000,
   },
   innerContainer: {
     backgroundColor: theme.colors.blackAlpha[800],

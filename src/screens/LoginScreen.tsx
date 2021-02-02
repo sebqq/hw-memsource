@@ -1,14 +1,22 @@
 import { observer } from "mobx-react-lite";
 import React, { useRef, useState } from "react";
-import { Text, Button, View, StyleSheet, TextInput } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  GestureResponderEvent,
+} from "react-native";
 import * as WebBrowser from "expo-web-browser";
 
 import FormGroup from "../components/Form/FormGroup";
 import ContainerLoadingIndicator from "../components/Loading/ContainerLoadingIndicator";
 import { useStore } from "../mobx/useStore";
 import theme from "../utils/theme";
+import Button from "../components/Button";
+import ErrorText from "../components/Form/ErrorText";
 
-const LoginScreen = observer(() => {
+const LoginScreen = () => {
   const { authStore } = useStore();
 
   const usernameInputRef = useRef<TextInput>(null);
@@ -37,13 +45,14 @@ const LoginScreen = observer(() => {
 
   return (
     <>
-      <View style={styles.innerContainer}>
+      <View testID="Login.container" style={styles.innerContainer}>
         <Text style={styles.headingLabel}>
           You will need to{" "}
           <Text style={theme.styles.fontBold}>sign in first</Text> in order to
           see and/or manage your projects.
         </Text>
         <FormGroup
+          testID="Login.username"
           inputRef={usernameInputRef}
           labelText="Your Username:"
           placeholder="Peter"
@@ -52,6 +61,7 @@ const LoginScreen = observer(() => {
           onChangeText={setUsername}
         />
         <FormGroup
+          testID="Login.password"
           inputRef={passwordInputRef}
           labelText="Your Password:"
           placeholder="*********"
@@ -60,26 +70,33 @@ const LoginScreen = observer(() => {
           onChangeText={setPassword}
           secureTextEntry
         />
-        {authStore.requestState.state == "error" &&
-          authStore.requestState.errorMessage && (
-            <Text style={styles.errorText}>
-              {authStore.requestState.errorMessage}
-            </Text>
-          )}
-        <View style={styles.spacer} />
-        <Button title="Sign in" onPress={onLoginPressed} />
+        <ErrorText
+          testID="Login.Error"
+          error={authStore.requestState.state === "error"}
+          errorText={authStore.requestState.errorMessage}
+        />
         <View style={styles.spacer} />
         <Button
-          title={"Reset Your Password"}
-          onPress={onResetPasswordPressed}
+          testID="Login.submit"
+          text="Sign in"
+          onPress={onLoginPressed}
+          disabled={authStore.requestState.state === "pending"}
         />
+        <View style={styles.spacer} />
+        <Text style={styles.secondaryButtonLabel}>Forgot your password?</Text>
+        <Text
+          onPress={onResetPasswordPressed}
+          style={styles.secondaryButtonLink}
+        >
+          Reset Password
+        </Text>
       </View>
       {authStore.requestState.state === "pending" && (
         <ContainerLoadingIndicator text="Logging in..." />
       )}
     </>
   );
-});
+};
 
 const styles = StyleSheet.create({
   innerContainer: {
@@ -100,6 +117,19 @@ const styles = StyleSheet.create({
     color: theme.colors.red[400],
     fontWeight: "bold",
   },
+  secondaryButtonLabel: {
+    fontSize: 16,
+    marginTop: 6,
+    textAlign: "center",
+    color: theme.colors.gray[500],
+  },
+  secondaryButtonLink: {
+    marginTop: 4,
+    fontSize: 16,
+    textAlign: "center",
+    color: theme.colors.blue[600],
+    textDecorationLine: "underline",
+  },
 });
 
-export default LoginScreen;
+export default observer(LoginScreen);

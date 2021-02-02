@@ -66,7 +66,7 @@ export async function sendRequest<T>(
       };
     }
   } catch (e) {
-    console.log(e);
+    // api is probably down
     return {
       status: "error",
       data: {

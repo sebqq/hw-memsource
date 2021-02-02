@@ -1,14 +1,14 @@
 import { flow, getRoot, Instance, types } from "mobx-state-tree";
 
 import { ProjectResponse, ProjectStatusResponse } from "../../../api/models";
-import {
-  displayFromLocalString,
-  displayFromUtcString,
-} from "../../../utils/helpers";
+import { displayDateFromString, str2date } from "../../../utils/helpers";
 import { RootStoreModel } from "../../createStore";
 import projectAPI from "../../../api/endpoints/projects";
 import { BaseRequestState, SendRequestReturnType } from "../api/RequestState";
 import { FetchState } from "../../types";
+import dayjs from "dayjs";
+import { DueInHoursType } from "../../../components/ProjectListScreen/useDueFilterReducer";
+import { Children } from "react";
 
 export type ProjectModel = Instance<typeof Project>;
 
@@ -46,11 +46,22 @@ export const Project = types
      */
     return {
       dateCreatedString() {
-        return displayFromUtcString(self.dateCreated);
+        return displayDateFromString(self.dateCreated);
       },
 
       dateDueString() {
-        return displayFromLocalString(self.dateDue);
+        return displayDateFromString(self.dateDue);
+      },
+
+      isBeforeDue(dueInHours: DueInHoursType) {
+        if (dueInHours === "anyDueDate") {
+          return true;
+        }
+
+        const dayNow = dayjs.utc();
+        const dueDate = str2date(self.dateDue);
+        const dueDiff = dueDate.diff(dayNow, "h");
+        return dueDate.isAfter(dayNow) && dueInHours >= dueDiff;
       },
     };
   })

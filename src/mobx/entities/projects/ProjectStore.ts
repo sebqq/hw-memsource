@@ -5,7 +5,6 @@ import { Project } from "./Project";
 import projectAPI from "../../../api/endpoints/projects";
 import { FetchState } from "../../types";
 import { ProjectResponse, ProjectsResponse } from "../../../api/models";
-import { str2LocalDate } from "../../../utils/helpers";
 import {
   BaseRequestState,
   BASE_REQUEST_INIT_STATE,
@@ -56,17 +55,12 @@ export const ProjectStore = types
           );
         }
 
-        const dayNow = dayjs();
         return Array.from(self.content.values()).reduce(
           (uids, currentProject) => {
-            const dueDate = str2LocalDate(currentProject.dateDue);
-            const dueDiff = dueDate.diff(dayNow, "h");
-
-            // filter by dueInHours
-            if (dueDate.isAfter(dayNow) && dueInHours >= dueDiff) {
+            // filter by due
+            if (currentProject.isBeforeDue(dueInHours)) {
               uids.push(currentProject.uid);
             }
-
             return uids;
           },
           [] as string[]

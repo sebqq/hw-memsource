@@ -24,6 +24,7 @@ import {
   SendRequestReturnType,
 } from "../api/RequestState";
 import { RootStoreModel } from "../../createStore";
+import { str2date } from "../../../utils/helpers";
 
 export type AuthStoreModel = Instance<typeof AuthStore>;
 
@@ -103,8 +104,11 @@ export const AuthStore = types
         if (!dateString) {
           throw true;
         }
-        const dateObj = dayjs(dateString);
-        return dateObj.isValid() && dayjs().isAfter(dateObj);
+        const expiresObj = str2date(dateString);
+        if (!expiresObj.isValid()) {
+          return true;
+        }
+        return dayjs().isAfter(expiresObj);
       },
     };
   })

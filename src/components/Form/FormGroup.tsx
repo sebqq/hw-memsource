@@ -32,6 +32,7 @@ const FormGroup: React.FC<Props> = ({
     <View style={[styles.inputContainer, containerStyles]}>
       <Text style={[styles.inputLabel, labelStyles]}>{labelText}</Text>
       <TextInput
+        testID="components-form-formgroup"
         ref={inputRef}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "white",
-    paddingVertical: 18,
+    height: 57,
     fontSize: 16,
     paddingHorizontal: 10,
     borderRadius: 7,

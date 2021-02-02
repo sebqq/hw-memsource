@@ -14,7 +14,7 @@ export type SendRequestReturnType<T extends Object> = {
 export type BaseRequestStateModel = Instance<typeof BaseRequestState>;
 
 export const BASE_REQUEST_INIT_STATE = {
-  _apiRequestState: "pending",
+  _apiRequestState: "stale",
 };
 
 /**

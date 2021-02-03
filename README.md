@@ -32,7 +32,7 @@ I've implemented mostly unit and integration tests. For these tests I'm using co
 
 If I was using bare React Native for this app, then I would most probably make end-to-end tests for:
 
-1. ProjectList -> ProjectInfo -> (delete this project from dashboard) -> Refresh this project and get Error message -> Go back on ProjectList and check if this project was removed.
+1. LoginScreen -> ProjectList -> ProjectInfo -> (delete this project from dashboard) -> Refresh this project and get Error message -> Go back on ProjectList and check if this project was removed.
 2. Manipulations of "Due" filter widget on ProjectListScreen.
 
 Also, if we are talking about production grade application, then it would be nice to connect this project to some CI/CD tools.

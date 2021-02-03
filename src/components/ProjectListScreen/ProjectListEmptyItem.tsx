@@ -5,10 +5,15 @@ import * as WebBrowser from "expo-web-browser";
 
 // @ts-ignore
 import EmptyImage from "../../../assets/emptylist.png";
-import theme from "../../utils/theme";
 import { useStore } from "../../mobx/useStore";
+import { DueInHoursType } from "./useDueFilterReducer";
+import theme from "../../utils/theme";
 
-const ProjectListEmptyItem = () => {
+type Props = {
+  dueInHours: DueInHoursType;
+};
+
+const ProjectListEmptyItem = ({ dueInHours }: Props) => {
   const { projectStore } = useStore();
 
   async function createNewProject() {
@@ -17,7 +22,7 @@ const ProjectListEmptyItem = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={EmptyImage} style={{ width: 305, height: 159 }} />
+      <Image source={EmptyImage} style={styles.image} />
       {projectStore.requestState.state === "error" ? (
         <Text style={styles.heading}>
           {projectStore.requestState.errorMessage ??
@@ -25,7 +30,11 @@ const ProjectListEmptyItem = () => {
         </Text>
       ) : (
         <>
-          <Text style={styles.heading}>There is no project to display.</Text>
+          <Text style={styles.heading}>
+            {dueInHours === "anyDueDate"
+              ? "There is no project to display."
+              : "There are no projects for selected Due filter."}
+          </Text>
           <Text style={styles.callToAction}>Do you wish to create one?</Text>
           <View style={styles.buttonContainer}>
             <Button title={"Go to Dashboard"} onPress={createNewProject} />
@@ -42,12 +51,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 40,
   },
+  image: {
+    width: 300,
+    height: 160,
+  },
   heading: {
     fontSize: 16,
     color: theme.colors.gray[600],
     paddingHorizontal: 12,
     textAlign: "center",
-    marginTop: 20,
+    marginTop: 40,
   },
   callToAction: {
     fontSize: 22,

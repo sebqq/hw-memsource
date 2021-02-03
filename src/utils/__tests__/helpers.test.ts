@@ -14,7 +14,7 @@ describe("Date parse utils tests", () => {
   });
 
   it("Test displayDateFromString()", () => {
-    // We've set local timezone to be GMT for testing purposes
+    // We've set local timezone to process.env (from package.json) to be GMT for testing purposes
     expect(displayDateFromString("2021-01-30T08:00:00+0000")).toBe(
       "January 30, 2021 08:00"
     );

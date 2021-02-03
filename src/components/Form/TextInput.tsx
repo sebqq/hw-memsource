@@ -19,7 +19,7 @@ type Props = {
   containerStyles?: StyleProp<ViewStyle>;
 } & TextInputProps;
 
-const FormGroup: React.FC<Props> = ({
+const CustomTextInput: React.FC<Props> = ({
   inputRef,
   labelStyles,
   labelText,
@@ -32,7 +32,7 @@ const FormGroup: React.FC<Props> = ({
     <View style={[styles.inputContainer, containerStyles]}>
       <Text style={[styles.inputLabel, labelStyles]}>{labelText}</Text>
       <TextInput
-        testID="components-form-formgroup"
+        testID="components-form-textinput"
         ref={inputRef}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FormGroup;
+export default CustomTextInput;

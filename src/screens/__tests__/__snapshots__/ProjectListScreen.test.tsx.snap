@@ -1,0 +1,574 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectListScreen tests it renders all inputs as expected 1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "backgroundColor": "#EDF2F7",
+      "flex": 1,
+      "position": "relative",
+    }
+  }
+>
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    ListEmptyComponent={[Function]}
+    ListHeaderComponent={[Function]}
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+        "paddingBottom": 15,
+      }
+    }
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={1}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        colors={
+          Array [
+            "#90cdf4",
+            "#63b3ed",
+          ]
+        }
+        onRefresh={[Function]}
+        refreshing={false}
+        tintColor="#90cdf4"
+      />
+    }
+    refreshing={false}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "padding": 10,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Filter by Due:
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "stretch",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+                testID="ios_touchable_wrapper"
+              >
+                <View
+                  pointerEvents="box-only"
+                  style={
+                    Object {
+                      "marginLeft": 10,
+                    }
+                  }
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    editable={false}
+                    rejectResponderTermination={true}
+                    style={
+                      Array [
+                        Object {
+                          "borderColor": "#A0AEC0",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "color": "#171923",
+                          "fontSize": 16,
+                          "paddingHorizontal": 12,
+                          "paddingRight": 30,
+                          "paddingVertical": 12,
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="text_input"
+                    underlineColorAndroid="transparent"
+                    value="Any due date"
+                  />
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "position": "absolute",
+                          "right": 0,
+                        },
+                        Object {
+                          "right": 10,
+                          "top": 15,
+                        },
+                      ]
+                    }
+                    testID="icon_container"
+                  >
+                    <Text />
+                  </View>
+                </View>
+              </View>
+              <Modal
+                hardwareAccelerated={false}
+                onOrientationChange={[Function]}
+                supportedOrientations={
+                  Array [
+                    "portrait",
+                    "landscape",
+                  ]
+                }
+                testID="ios_modal"
+                transparent={true}
+                visible={false}
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "flex": 1,
+                      "opacity": 1,
+                    }
+                  }
+                  testID="ios_modal_top"
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#f8f8f8",
+                        "borderTopColor": "#dedede",
+                        "borderTopWidth": 1,
+                        "flexDirection": "row",
+                        "height": 45,
+                        "justifyContent": "space-between",
+                        "paddingHorizontal": 10,
+                        "zIndex": 2,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="input_accessory_view"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexDirection": "row",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    <View
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderColor": "#a1a1a1",
+                              "borderRightWidth": 1.5,
+                              "borderTopWidth": 1.5,
+                              "height": 15,
+                              "width": 15,
+                            },
+                            undefined,
+                            Object {
+                              "marginLeft": 11,
+                              "transform": Array [
+                                Object {
+                                  "translateY": 4,
+                                },
+                                Object {
+                                  "rotate": "-45deg",
+                                },
+                              ],
+                            },
+                            undefined,
+                            Object {},
+                          ]
+                        }
+                      />
+                    </View>
+                    <View
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderColor": "#a1a1a1",
+                              "borderRightWidth": 1.5,
+                              "borderTopWidth": 1.5,
+                              "height": 15,
+                              "width": 15,
+                            },
+                            undefined,
+                            Object {
+                              "marginLeft": 22,
+                              "transform": Array [
+                                Object {
+                                  "translateY": -5,
+                                },
+                                Object {
+                                  "rotate": "135deg",
+                                },
+                              ],
+                            },
+                            undefined,
+                            Object {},
+                          ]
+                        }
+                      />
+                    </View>
+                  </View>
+                  <View
+                    accessible={true}
+                    focusable={true}
+                    hitSlop={
+                      Object {
+                        "bottom": 4,
+                        "left": 4,
+                        "right": 4,
+                        "top": 4,
+                      }
+                    }
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "opacity": 1,
+                      }
+                    }
+                    testID="done_button"
+                  >
+                    <View
+                      testID="needed_for_touchable"
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#007aff",
+                              "fontSize": 17,
+                              "fontWeight": "600",
+                              "paddingRight": 11,
+                              "paddingTop": 1,
+                            },
+                            undefined,
+                            Object {},
+                          ]
+                        }
+                        testID="done_text"
+                      >
+                        Done
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#d0d4da",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "height": 215,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <View>
+                    <RNCPicker
+                      items={
+                        Array [
+                          Object {
+                            "label": "Any due date",
+                            "testID": undefined,
+                            "textColor": undefined,
+                            "value": "anyDueDate",
+                          },
+                          Object {
+                            "label": "In 4 hours",
+                            "testID": undefined,
+                            "textColor": undefined,
+                            "value": 4,
+                          },
+                          Object {
+                            "label": "In 8 hours",
+                            "testID": undefined,
+                            "textColor": undefined,
+                            "value": 8,
+                          },
+                          Object {
+                            "label": "In 24 hours",
+                            "testID": undefined,
+                            "textColor": undefined,
+                            "value": 24,
+                          },
+                          Object {
+                            "label": "In 72 hours",
+                            "testID": undefined,
+                            "textColor": undefined,
+                            "value": 72,
+                          },
+                        ]
+                      }
+                      onChange={[Function]}
+                      selectedIndex={0}
+                      style={
+                        Array [
+                          Object {
+                            "height": 216,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="ios_picker"
+                    />
+                  </View>
+                </View>
+              </Modal>
+            </View>
+          </View>
+          <RNCSlider
+            disabled={false}
+            enabled={true}
+            inverted={false}
+            maximumTrackTintColor="#A0AEC0"
+            maximumValue={4}
+            minimumTrackTintColor="#4299e1"
+            minimumValue={0}
+            onChange={[Function]}
+            onRNCSliderSlidingComplete={[Function]}
+            onRNCSliderSlidingStart={[Function]}
+            onRNCSliderValueChange={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            step={1}
+            style={
+              Array [
+                Object {
+                  "height": 40,
+                },
+                Object {
+                  "marginTop": 10,
+                },
+              ]
+            }
+            thumbImage={
+              Object {
+                "__packager_asset": true,
+                "height": 1,
+                "scale": 1,
+                "uri": "uri",
+                "width": 1,
+              }
+            }
+            value={0}
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "marginTop": 40,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 160,
+              "width": 300,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "#4A5568",
+              "fontSize": 16,
+              "marginTop": 40,
+              "paddingHorizontal": 12,
+              "textAlign": "center",
+            }
+          }
+        >
+          There is no project to display.
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#1A202C",
+              "fontSize": 22,
+              "marginTop": 2,
+              "paddingHorizontal": 12,
+              "textAlign": "center",
+            }
+          }
+        >
+          Do you wish to create one?
+        </Text>
+        <View
+          style={
+            Object {
+              "marginTop": 20,
+            }
+          }
+        >
+          <View
+            accessibilityRole="button"
+            accessibilityState={Object {}}
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {},
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#007AFF",
+                      "fontSize": 18,
+                      "margin": 8,
+                      "textAlign": "center",
+                    },
+                  ]
+                }
+              >
+                Go to Dashboard
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</RNCSafeAreaView>
+`;

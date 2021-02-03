@@ -1,26 +1,21 @@
 import { observer } from "mobx-react-lite";
 import React, { useRef, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  GestureResponderEvent,
-} from "react-native";
+import { Text, View, StyleSheet, TextInput as RNTextInput } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 
-import FormGroup from "../components/Form/FormGroup";
+import TextInput from "../components/Form/TextInput";
 import ContainerLoadingIndicator from "../components/Loading/ContainerLoadingIndicator";
 import { useStore } from "../mobx/useStore";
 import theme from "../utils/theme";
 import Button from "../components/Button";
 import ErrorText from "../components/Form/ErrorText";
+import { ScrollView } from "react-native-gesture-handler";
 
 const LoginScreen = () => {
   const { authStore } = useStore();
 
-  const usernameInputRef = useRef<TextInput>(null);
-  const passwordInputRef = useRef<TextInput>(null);
+  const usernameInputRef = useRef<RNTextInput>(null);
+  const passwordInputRef = useRef<RNTextInput>(null);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -45,13 +40,13 @@ const LoginScreen = () => {
 
   return (
     <>
-      <View testID="Login.container" style={styles.innerContainer}>
+      <ScrollView testID="Login.container" style={styles.innerContainer}>
         <Text style={styles.headingLabel}>
           You will need to{" "}
           <Text style={theme.styles.fontBold}>sign in first</Text> in order to
           see and/or manage your projects.
         </Text>
-        <FormGroup
+        <TextInput
           testID="Login.username"
           inputRef={usernameInputRef}
           labelText="Your Username:"
@@ -60,7 +55,7 @@ const LoginScreen = () => {
           value={username}
           onChangeText={setUsername}
         />
-        <FormGroup
+        <TextInput
           testID="Login.password"
           inputRef={passwordInputRef}
           labelText="Your Password:"
@@ -90,7 +85,7 @@ const LoginScreen = () => {
         >
           Reset Password
         </Text>
-      </View>
+      </ScrollView>
       {authStore.requestState.state === "pending" && (
         <ContainerLoadingIndicator text="Logging in..." />
       )}
@@ -101,7 +96,7 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   innerContainer: {
     marginHorizontal: 16,
-    marginTop: 16,
+    paddingTop: 16,
     position: "relative",
   },
   spacer: {

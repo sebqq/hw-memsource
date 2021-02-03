@@ -1,5 +1,5 @@
 import * as React from "react";
-import { render, fireEvent, cleanup, act } from "@testing-library/react-native";
+import { render, fireEvent, act } from "@testing-library/react-native";
 import fetchMock from "jest-fetch-mock";
 import { when } from "mobx";
 import { Instance } from "mobx-state-tree";
@@ -28,9 +28,6 @@ describe("LoginScreen tests", () => {
     useStore.mockReturnValue(stubAuthStore());
     fetchMock.resetMocks();
   });
-  afterEach(() => {
-    cleanup();
-  });
 
   it("it renders all inputs as expected", () => {
     const { toJSON } = render(<LoginScreen />);
@@ -49,8 +46,8 @@ describe("LoginScreen tests", () => {
     fireEvent.press(getByText("Sign in"));
     await act(async () => {
       await when(() => authStore.requestState.state === "error");
-      expect(getByTestId("Login.Error").props.children).not.toBeNull();
     });
+    expect(getByTestId("Login.Error").props.children).not.toBeNull();
   });
 
   it("Login - success flow", async () => {
@@ -80,7 +77,7 @@ describe("LoginScreen tests", () => {
     fireEvent.press(getByText("Sign in"));
     await act(async () => {
       await when(() => authStore.requestState.state === "stale");
-      expect(getByTestId("Login.Error").props.children).toBeNull();
     });
+    expect(getByTestId("Login.Error").props.children).toBeNull();
   });
 });

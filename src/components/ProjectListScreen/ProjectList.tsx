@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { FlatList, RefreshControl } from "react-native";
+import { StyleSheet, FlatList, RefreshControl } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
 
@@ -14,14 +14,17 @@ import theme from "../../utils/theme";
 import ProjectListSeparator from "./ProjectListSeparator";
 
 type NavProp = NavigationProp<RootStackParamList, "LoginScreen">;
+type Props = {
+  initDueFilter?: DueInHoursType;
+};
 
-const REFRESH_CONTROL_COLORS = [theme.colors.blue[400], theme.colors.blue[600]];
+const REFRESH_CONTROL_COLORS = [theme.colors.blue[200], theme.colors.blue[300]];
 
 const keyExtractor = (uid: string) => {
   return `ms-project-key-${uid}`;
 };
 
-const ProjectList: React.FC = () => {
+const ProjectList: React.FC<Props> = ({ initDueFilter = "anyDueDate" }) => {
   const navigation = useNavigation<NavProp>();
   const { projectStore } = useStore();
 
@@ -30,7 +33,7 @@ const ProjectList: React.FC = () => {
    * whenever filter is changed in children component.
    */
   const [dueInHoursFilter, setDueFilter] = useState<DueInHoursType>(
-    "anyDueDate"
+    initDueFilter
   );
   const page = projectStore.pageNumber;
   const canMovePage = projectStore.totalPages > projectStore.pageNumber;
@@ -88,6 +91,12 @@ const ProjectList: React.FC = () => {
     setRefresh(false);
   }, [fetchApiData]);
 
+  useEffect(() => {
+    if (dueInHoursFilter !== initDueFilter) {
+      setDueFilter(initDueFilter);
+    }
+  }, [initDueFilter]);
+
   /**
    * Initial data fetching and/or fetching when filter is changed.
    */
@@ -114,7 +123,10 @@ const ProjectList: React.FC = () => {
     [dueInHoursFilter]
   );
 
-  const renderEmptyItem = useCallback(() => <ProjectListEmptyItem />, []);
+  const renderEmptyItem = useCallback(
+    () => <ProjectListEmptyItem dueInHours={dueInHoursFilter} />,
+    [dueInHoursFilter]
+  );
 
   const renderSeparator = useCallback(() => <ProjectListSeparator />, []);
 
@@ -133,13 +145,14 @@ const ProjectList: React.FC = () => {
         refreshControl={
           <RefreshControl
             colors={REFRESH_CONTROL_COLORS}
+            tintColor={REFRESH_CONTROL_COLORS[0]}
             refreshing={refresh}
             onRefresh={onRefresh}
           />
         }
         refreshing={refresh}
         ListHeaderComponent={renderHeader}
-        contentContainerStyle={theme.styles.flexGrow}
+        contentContainerStyle={styles.container}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         onEndReached={onEndReached}
@@ -153,5 +166,12 @@ const ProjectList: React.FC = () => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    ...theme.styles.flexGrow,
+    paddingBottom: 15,
+  },
+});
 
 export default observer(ProjectList);

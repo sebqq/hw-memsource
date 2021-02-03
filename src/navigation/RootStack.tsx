@@ -1,14 +1,15 @@
 import React from "react";
-
+import { observer } from "mobx-react-lite";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
-import ProjectListScreen from "../screens/ProjectListScreen";
-import LoginScreen from "../screens/LoginScreen";
-import { observer } from "mobx-react-lite";
+
 import { useStore } from "../mobx/useStore";
 import theme from "../utils/theme";
-import ProjectScreen from "../screens/ProjectScreen";
 import HeaderLogout from "../components/HeaderLogout";
+// import screens
+import LoginScreen from "../screens/LoginScreen";
+import ProjectListScreen from "../screens/ProjectListScreen";
+import ProjectScreen from "../screens/ProjectScreen";
 
 export type RootStackParamList = {
   ProjectListScreen: undefined;

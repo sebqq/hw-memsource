@@ -28,14 +28,15 @@ jest.mock("../../../../api/endpoints/auth", () => ({
   },
 }));
 
+let authStore = AuthStore.create(AUTH_INIT_STATE);
+beforeEach(() => {
+  MockDate.reset();
+  AsyncStorageMock.clear();
+  authStore = AuthStore.create(AUTH_INIT_STATE);
+});
+
 describe("AuthStore Model tests", () => {
-  beforeEach(() => {
-    MockDate.reset();
-  });
-
   it("Test isTokenExpired() view", () => {
-    const authStore = AuthStore.create(AUTH_INIT_STATE);
-
     MockDate.set("2021-01-01T05:00:00-0000");
 
     // check for not yet expired date
@@ -52,17 +53,12 @@ describe("AuthStore Model tests", () => {
 });
 
 describe("AuthStore Model - hydrate() action tests", () => {
-  beforeEach(() => {
-    MockDate.reset();
-  });
-
   it("Test credentials not in AsyncStorage", async () => {
     AsyncStorageMock.getItem = jest.fn(async (key, callback) => {
       callback && callback(null, null);
       return null;
     });
 
-    const authStore = AuthStore.create(AUTH_INIT_STATE);
     await authStore.hydrate();
 
     expect(authStore.requestState.state).toBe("stale");
@@ -81,10 +77,10 @@ describe("AuthStore Model - hydrate() action tests", () => {
     });
     MockDate.set("2021-01-01T05:00:00-0000");
 
-    const authStore = AuthStore.create(AUTH_INIT_STATE);
     await authStore.hydrate();
 
     expect(authStore.requestState.state).toBe("expired");
+    expect(AsyncStorageMock.getItem).toHaveBeenCalledTimes(1);
   });
 
   it("Test valid credentials in AsyncStorage", async () => {
@@ -98,12 +94,12 @@ describe("AuthStore Model - hydrate() action tests", () => {
     });
     MockDate.set("2021-01-01T05:00:00-0000");
 
-    const authStore = AuthStore.create(AUTH_INIT_STATE);
     await authStore.hydrate();
 
     expect(authStore.token).toBe("123456");
     expect(authStore.requestState.state).toBe("stale");
     expect(authStore.authenticated).toBeTruthy();
     expect(authStore.user).not.toBeNull();
+    expect(AsyncStorageMock.getItem).toHaveBeenCalledTimes(1);
   });
 });

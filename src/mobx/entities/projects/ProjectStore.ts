@@ -1,5 +1,4 @@
 import { destroy, flow, Instance, types } from "mobx-state-tree";
-import dayjs from "dayjs";
 
 import { Project } from "./Project";
 import projectAPI from "../../../api/endpoints/projects";

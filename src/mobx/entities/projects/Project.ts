@@ -1,4 +1,5 @@
 import { flow, getRoot, Instance, types } from "mobx-state-tree";
+import dayjs from "dayjs";
 
 import { ProjectResponse, ProjectStatusResponse } from "../../../api/models";
 import { displayDateFromString, str2date } from "../../../utils/helpers";
@@ -6,9 +7,7 @@ import { RootStoreModel } from "../../createStore";
 import projectAPI from "../../../api/endpoints/projects";
 import { BaseRequestState, SendRequestReturnType } from "../api/RequestState";
 import { FetchState } from "../../types";
-import dayjs from "dayjs";
 import { DueInHoursType } from "../../../components/ProjectListScreen/useDueFilterReducer";
-import { Children } from "react";
 
 export type ProjectModel = Instance<typeof Project>;
 
@@ -92,8 +91,7 @@ export const Project = types
        * Refreshes project's data using API call to get project's details.
        */
       refresh: flow(function* () {
-        const root = getRoot<RootStoreModel>(self);
-        const token = root.accessToken;
+        const token = self.getAccessToken();
         if (!token) {
           return;
         }
@@ -110,6 +108,7 @@ export const Project = types
           return null;
         }
 
+        const root = getRoot<RootStoreModel>(self);
         return root.projectStore.processProject(result.data);
       }),
     };

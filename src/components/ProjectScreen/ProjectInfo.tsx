@@ -20,7 +20,7 @@ type Props = {
   uid: string;
 };
 
-const REFRESH_CONTROL_COLORS = [theme.colors.blue[400], theme.colors.blue[600]];
+const REFRESH_CONTROL_COLORS = [theme.colors.blue[200], theme.colors.blue[300]];
 
 const keyExtractor = (item: ProjectInfoRowData) => {
   return `ms-project-item-key-${item.label}`;
@@ -93,6 +93,7 @@ const ProjectInfo = ({ uid }: Props) => {
         refreshControl={
           <RefreshControl
             colors={REFRESH_CONTROL_COLORS}
+            tintColor={REFRESH_CONTROL_COLORS[0]}
             refreshing={refresh}
             onRefresh={onRefresh}
           />

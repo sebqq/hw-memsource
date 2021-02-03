@@ -15,17 +15,6 @@ const useStore = storeHook as ReturnType<typeof jest["fn"]>;
 jest.mock("../../../mobx/useStore");
 let rootStore: StoreContextType;
 
-const mockedNavigate = jest.fn();
-jest.mock("@react-navigation/native", () => {
-  return {
-    //@ts-ignore
-    ...jest.requireActual("@react-navigation/native"),
-    useNavigation: () => ({
-      navigate: mockedNavigate,
-    }),
-  };
-});
-
 const stubAuthStore = () => {
   rootStore = createStore();
   return rootStore;

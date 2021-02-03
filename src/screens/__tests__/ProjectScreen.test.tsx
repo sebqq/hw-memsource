@@ -21,18 +21,6 @@ jest.mock("../../mobx/useStore");
 let authStore: Instance<AuthStoreModel>;
 let projectStore: Instance<ProjectStoreModel>;
 
-const mockedNavigate = jest.fn();
-
-jest.mock("@react-navigation/native", () => {
-  return {
-    //@ts-ignore
-    ...jest.requireActual("@react-navigation/native"),
-    useNavigation: () => ({
-      navigate: mockedNavigate,
-    }),
-  };
-});
-
 const stubRootStore = () => {
   authStore = AuthStore.create(AUTH_INIT_STATE);
   projectStore = ProjectStore.create(PROJECTS_INIT_STATE);

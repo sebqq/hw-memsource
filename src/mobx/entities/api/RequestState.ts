@@ -1,7 +1,7 @@
 import { types, Instance, flow, getRoot, toGenerator } from "mobx-state-tree";
+
 import { ErrorType, FetchReturnType } from "../../../api/fetch";
 import { RootStoreModel } from "../../createStore";
-
 import { FetchState } from "../../types";
 
 type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any

@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
+
 import theme from "../../utils/theme";
 
 type Props = {
